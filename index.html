@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Путеводитель по стадионам и спортивные новости</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        #weather-info,
+        #news-section {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #007bff;
+            border-radius: 5px;
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">Спортивный Картограф - Путеводитель по стадионам и спортивные новости</a>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="welcome text-center">
+            <h1 class="display-4">Привет! На этом сайте ты сможешь найти близкий и удобный стадион для занятий спортом!
+            </h1>
+            <p class="lead">Приложение "Спортивный картограф" — это интерактивный инструмент, который позволяет
+                пользователям исследовать местоположение на карте, посмотреть погоду перед тренировкой, добавлять
+                маркеры, а также находить и строить маршруты к спортивным объектам. Дополнительно вы можете читать
+                последние спортивные
+                новости.</p>
+        </div>
+
+        <div id="map-test" class="map border mt-4" style="height: 400px;"></div>
+
+        <div id="weather-info" class="border mt-4">
+            <h4>Погода:</h4>
+            <p id="weather-data">Загрузка данных...</p>
+        </div>
+
+        <div class="text-center mt-4">
+            <input type="file" id="imageUpload" accept="image/*" class="btn btn-secondary mb-2"
+                aria-label="Загрузить изображение для маркера">
+            <button id="add-marker" class="btn btn-primary"
+                aria-label="Добавить маркер с загруженным изображением">Добавить маркер с изображением</button>
+        </div>
+
+        <!-- Секция для новостей -->
+        <div id="news-section" class="mt-4">
+            <h4>Последние новости спорта:</h4>
+            <ul id="news" class="list-unstyled">
+                <li>Загрузка новостей...</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer class="bg-primary text-white text-center py-3 mt-5">
+        <p>Сайт Тирона Ильи Юрьевича - студента ITHub группа 3ИТД 22 &copy; 2024</p>
+    </footer>
+
+    <!-- Yandex Maps API -->
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=e12b4bb0-635c-4a44-90b4-66b7a80fd6f8&lang=ru_RU"></script>
+    <script src="script.js"></script>
+
+    <!-- Подключение библиотек для Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- WebSocket для новостей -->
+    <script>
+        const ws = new WebSocket('ws://localhost:8081');
+        ws.onmessage = function (event) {
+            const newsList = JSON.parse(event.data);
+            const newsElement = document.getElementById('news');
+            newsElement.innerHTML = '';
+
+            newsList.forEach(newsItem => {
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = newsItem.link;  // Ссылка на новость
+                a.textContent = newsItem.title;  // Заголовок новости
+                a.target = "_blank";  // Открыть в новой вкладке
+                a.classList.add('text-primary');  // Стиль ссылки
+                li.appendChild(a);
+                newsElement.appendChild(li);
+            });
+        };
+    </script>
+</body>
+
+</html>

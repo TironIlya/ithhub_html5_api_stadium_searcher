@@ -1,0 +1,52 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+h1 {
+    font-size: 24px;
+    margin: 20px 0;
+}
+
+p {
+    font-size: 16px;
+    margin: 10px 0;
+}
+
+.map {
+    width: 100%;
+    height: 400px;
+    margin: 20px auto;
+}
+
+.add-marker-button {
+    margin: 20px auto;
+    padding: 15px 30px;
+    font-size: 18px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: lightblue;
+    transition: background-color 0.3s;
+}
+
+.add-marker-button:hover {
+    background-color: deepskyblue;
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 20px;
+    }
+
+    p {
+        font-size: 14px;
+    }
+
+    .map {
+        height: 300px;
+    }
+}

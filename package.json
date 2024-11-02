@@ -1,0 +1,11 @@
+{
+    "name": "ithhub_html5_api_stadium_searcher",
+    "version": "1.0.0",
+    "description": "Описание вашего проекта",
+    "main": "proxy.mjs",
+    "dependencies": {
+        "cors": "^2.8.5",
+        "express": "^4.21.1",
+        "node-fetch": "^2.7.0"
+    }
+}
