@@ -24,7 +24,7 @@
 
 1. Клонируйте репозиторий с помощью команды:
 
-   git clone 
+   git clone https://github.com/TironIlya/ithhub_html5_api_stadium_searcher.git
 
 2. Перейдите в директорию проекта с помощью команды:
 
